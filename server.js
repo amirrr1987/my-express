@@ -18,6 +18,10 @@ app.get('/gallery',(req, res) => {
 app.get('/contact',(req, res) => {
     res.sendFile( path.join(__dirname , './public/contact.html' ));
 })
+app.post('/contact', (req, res) => {
+    console.log(res);
+    res.sendFile( path.join(__dirname , './public/contact.html' ));
+})
 
 app.use((req, res) => {
     res.status(404)
