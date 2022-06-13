@@ -18,5 +18,11 @@ app.get('/gallery',(req, res) => {
 app.get('/contact',(req, res) => {
     res.sendFile( path.join(__dirname , './public/contact.html' ));
 })
+
+app.use((req, res) => {
+    res.status(404)
+    res.sendFile(path.join(__dirname, './public/404.html'));
+})
+
 app.listen(port, () => { 'server running on port :' + port });
 
