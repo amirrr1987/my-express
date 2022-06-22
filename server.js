@@ -1,32 +1,96 @@
+
+
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 const path = require('path');
-app.use((req, res, next) => {
-    console.log(req.url);
+const qs = require('querystring');
+const bodyParser = require('body-parser');
+
+let loggerSystem = (req, res, next) => {
+    console.log('LOG');
     next();
-})
-app.get('/',(req, res) => {
-    res.sendFile( path.join(__dirname , './public/index.html' ));
-})
-app.get('/about',(req, res) => {
-    res.sendFile( path.join(__dirname , './public/about.html' ));
-})
-app.get('/gallery',(req, res) => {
-    res.sendFile( path.join(__dirname , './public/gallery.html' ));
-})
-app.get('/contact',(req, res) => {
-    res.sendFile( path.join(__dirname , './public/contact.html' ));
-})
-app.post('/contact', (req, res) => {
-    console.log(res);
-    res.sendFile( path.join(__dirname , './public/contact.html' ));
-})
+}
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(bodyParser.json());
+
+
+app.get('/', loggerSystem, (req, res) => {
+    res.status(200);
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('/about', (req, res) => {
+    res.status(200);
+    res.sendFile(path.join(__dirname, './public/about.html'));
+});
+
+app.get('/gallery', (req, res) => {
+    res.status(200);
+    res.sendFile(path.join(__dirname, './public/gallery.html'));
+});
+
+app.get('/contact', (req, res) => {
+    res.status(200);
+    res.sendFile(path.join(__dirname, './public/contact.html'));
+});
+app.get('/contact', (req, res) => {
+    res.status(200);
+    res.sendFile(path.join(__dirname, './public/contact.html'));
+});
+
+app.get('/login', (req, res) => {
+    res.status(200);
+    res.sendFile(path.join(__dirname, './public/login.html'));
+});
+app.post('/login', (req, res) => {
+
+    let loginStatus = false;
+    let email = req.body.email
+    let pass = req.body.password
+
+    if (email === 'Maghami.A1987@gmail.com' && pass === '1234') {
+        loginStatus = true
+    }
+
+    if (loginStatus) {
+        res.status(301).redirect('/')
+    }
+    else {
+        res.status(301).redirect('/login')
+
+    }
+});
 
 app.use((req, res) => {
-    res.status(404)
+    res.status(404);
     res.sendFile(path.join(__dirname, './public/404.html'));
-})
+});
 
 app.listen(port, () => { 'server running on port :' + port });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
