@@ -32,6 +32,11 @@ app.get('/gallery', (req, res) => {
     res.sendFile(path.join(__dirname, './public/gallery.html'));
 });
 
+app.get('/gallery/:id', (req, res) => {
+    res.status(200);
+    res.send(req.params.id)
+});
+
 app.get('/contact', (req, res) => {
     res.status(200);
     res.sendFile(path.join(__dirname, './public/contact.html'));
