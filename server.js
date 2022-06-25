@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 const path = require('path');
-const qs = require('querystring');
+// const qs = require('querystring');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser')
 
@@ -15,7 +15,7 @@ let loggerSystem = (req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
-// app.use(methodOverride('_method'))
+app.use(methodOverride('_method'))
 
 
 app.get('/', loggerSystem, (req, res) => {
@@ -38,9 +38,9 @@ app.get('/gallery/:id', (req, res) => {
     res.send(req.params.id)
 });
 app.delete('/contact', (req, res) => {
-    // res.status(200);
-    // res.sendFile(path.join(__dirname, './public/contact.html'));
-    res.send('delete')
+    res.status(204);
+    res.sendFile(path.join(__dirname, './public/contact.html'));
+    // res.send('delete')
 });
 
 app.get('/contact', (req, res) => {
