@@ -70,7 +70,8 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <form action="/contact?_method=DELETE" method="POST">
+          <form action="/contact" method="POST">
+            <input type="hidden" name="_method" value="PUT" />
             <button type="submit" class="btn btn-primary">DELETE</button>
           </form>
         </div>

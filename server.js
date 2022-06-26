@@ -15,7 +15,14 @@ let loggerSystem = (req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
-app.use(methodOverride('_method'))
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        // look in urlencoded POST bodies and delete it
+        var method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
 
 
 app.get('/', loggerSystem, (req, res) => {
@@ -37,10 +44,13 @@ app.get('/gallery/:id', (req, res) => {
     res.status(200);
     res.send(req.params.id)
 });
+app.put('/contact', (req, res) => {
+    res.status(203);
+    res.end('updated')
+});
 app.delete('/contact', (req, res) => {
     res.status(204);
-    res.sendFile(path.join(__dirname, './public/contact.html'));
-    // res.send('delete')
+    res.end()
 });
 
 app.get('/contact', (req, res) => {
