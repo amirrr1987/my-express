@@ -50,8 +50,8 @@ app.post('/login', (req, res) => {
 
     }
 });
-
-app.use('/', homeRouter);
+app.use(express.static('public/static'))
+app.use('/home', homeRouter);
 app.use('/admin', adminRouter);
 
 app.use((req, res) => {
