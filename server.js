@@ -6,9 +6,10 @@ const port = process.env.PORT || 5000;
 const path = require('path');
 // const qs = require('querystring');
 const methodOverride = require('method-override');
-const bodyParser = require('body-parser')
-const homeRouter = require('./routes/home')
-const adminRouter = require('./routes/admin')
+const bodyParser = require('body-parser');
+const homeRouter = require('./routes/home');
+const adminRouter = require('./routes/admin');
+
 let loggerSystem = (req, res, next) => {
     console.log('LOG');
     next();
@@ -16,6 +17,7 @@ let loggerSystem = (req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
+
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
         // look in urlencoded POST bodies and delete it
@@ -29,6 +31,7 @@ app.get('/login', (req, res) => {
     res.status(200);
     res.sendFile(path.join(__dirname, './public/login.html'));
 });
+
 app.post('/login', (req, res) => {
 
     let loginStatus = false;
@@ -50,8 +53,6 @@ app.post('/login', (req, res) => {
 
 app.use('/', homeRouter);
 app.use('/admin', adminRouter);
-
-
 
 app.use((req, res) => {
     res.status(404);
