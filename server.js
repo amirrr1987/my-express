@@ -7,7 +7,8 @@ const path = require('path');
 // const qs = require('querystring');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser')
-
+const homeRouter = require('./routes/home')
+const adminRouter = require('./routes/admin')
 let loggerSystem = (req, res, next) => {
     console.log('LOG');
     next();
@@ -23,40 +24,6 @@ app.use(methodOverride(function (req, res) {
         return method
     }
 }))
-
-
-app.get('/', loggerSystem, (req, res) => {
-    res.status(200);
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
-app.get('/about', (req, res) => {
-    res.status(200);
-    res.sendFile(path.join(__dirname, './public/about.html'));
-});
-
-app.get('/gallery', (req, res) => {
-    res.status(200);
-    res.sendFile(path.join(__dirname, './public/gallery.html'));
-});
-
-app.get('/gallery/:id', (req, res) => {
-    res.status(200);
-    res.send(req.params.id)
-});
-app.put('/contact', (req, res) => {
-    res.status(203);
-    res.end('updated')
-});
-app.delete('/contact', (req, res) => {
-    res.status(204);
-    res.end()
-});
-
-app.get('/contact', (req, res) => {
-    res.status(200);
-    res.sendFile(path.join(__dirname, './public/contact.html'));
-});
 
 app.get('/login', (req, res) => {
     res.status(200);
@@ -81,9 +48,14 @@ app.post('/login', (req, res) => {
     }
 });
 
+app.use('/', homeRouter);
+app.use('/admin', adminRouter);
+
+
+
 app.use((req, res) => {
     res.status(404);
-    res.sendFile(path.join(__dirname, './public/404.html'));
+    res.sendFile(path.join(__dirname, './public/home/404.html'));
 });
 
 app.listen(port, () => { 'server running on port :' + port });
