@@ -29,7 +29,7 @@ app.use(methodOverride(function (req, res) {
 
 app.get('/login', (req, res) => {
     res.status(200);
-    res.sendFile(path.join(__dirname, './public/login.html'));
+    res.sendFile(path.join(__dirname, './views/home/login.html'));
 });
 
 app.post('/login', (req, res) => {
@@ -50,13 +50,13 @@ app.post('/login', (req, res) => {
 
     }
 });
-app.use(express.static('public/static'))
-app.use('/home', homeRouter);
+app.use(express.static('public'))
+app.use('/', homeRouter);
 app.use('/admin', adminRouter);
 
 app.use((req, res) => {
     res.status(404);
-    res.sendFile(path.join(__dirname, './public/home/404.html'));
+    res.sendFile(path.join(__dirname, './views/home/404.html'));
 });
 
 app.listen(port, () => { 'server running on port :' + port });

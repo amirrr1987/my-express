@@ -5,20 +5,20 @@ const path = require('path');
 
 router.get('/', (req, res) => {
     res.status(200);
-    res.sendFile(path.join(__dirname, '../public/home/index.html'));
+    res.sendFile(path.join(__dirname, '../views/home/index.html'));
 });
 
 router.get('/about', (req, res) => {
     res.status(200);
-    res.sendFile(path.join(__dirname, '../public/home/about.html'));
+    res.sendFile(path.join(__dirname, '../views/home/about.html'));
 });
 
-router.get('/gallery', (req, res) => {
+router.get('/service', (req, res) => {
     res.status(200);
-    res.sendFile(path.join(__dirname, '../public/home/gallery.html'));
+    res.sendFile(path.join(__dirname, '../views/home/service.html'));
 });
 
-router.get('/gallery/:id', (req, res) => {
+router.get('/service/:id', (req, res) => {
     res.status(200);
     res.send(req.params.id)
 });
@@ -27,19 +27,19 @@ router.get('/gallery/:id', (req, res) => {
 router.route('/contact')
     .get((req, res) => {
         res.status(200);
-        res.sendFile(path.join(__dirname, '../public/home/contact.html'));
+        res.sendFile(path.join(__dirname, '../views/home/contact.html'));
     })
     .post((req, res) => {
         res.status(201);
-        res.sendFile(path.join(__dirname, '../public/home/contact.html'));
+        res.sendFile(path.join(__dirname, '../views/home/contact.html'));
     })
     .put((req, res) => {
         res.status(200);
-        res.sendFile(path.join(__dirname, '../public/home/contact.html'));
+        res.sendFile(path.join(__dirname, '../views/home/contact.html'));
     })
     .delete((req, res) => {
         res.status(204);
-        res.sendFile(path.join(__dirname, '../public/home/contact.html'));
+        res.sendFile(path.join(__dirname, '../views/home/contact.html'));
     })
 
 module.exports = router;
