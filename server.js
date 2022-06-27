@@ -30,6 +30,12 @@ app.use(methodOverride(function (req, res) {
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
+app.use( (req, res, next) => {
+    req.active = req.path.split('/')[1] // [0] will be empty since routes start with '/'
+    next();
+});
+
+
 app.get('/login', (req, res) => {
     res.status(200);
     res.sendFile(path.join(__dirname, './views/home/login.html'));

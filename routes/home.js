@@ -27,7 +27,7 @@ let theServices = {
 
 router.get('/', (req, res) => {
     res.status(200);
-    res.render('home/index', { title, usefulLink, theServices });
+    res.render('home/index', { title, usefulLink, theServices }, req.ejs);
 });
 
 router.get('/about', (req, res) => {
@@ -59,7 +59,7 @@ router.get('/blog', (req, res) => {
 router.route('/contact')
     .get((req, res) => {
         res.status(200);
-        res.render('home/contact', { title, usefulLink, theServices });
+        res.render('home/contact', { title, usefulLink, theServices  });
     })
     .post((req, res) => {
         res.status(201);
