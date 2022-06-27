@@ -21,11 +21,14 @@ app.use(bodyParser.json());
 app.use(methodOverride(function (req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
         // look in urlencoded POST bodies and delete it
-        var method = req.body._method
-        delete req.body._method
-        return method
+        var method = req.body._method;
+        delete req.body._method;
+        return method;
     }
-}))
+}));
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
 
 app.get('/login', (req, res) => {
     res.status(200);
@@ -50,7 +53,7 @@ app.post('/login', (req, res) => {
 
     }
 });
-app.use(express.static('public'))
+app.use(express.static('public'));
 app.use('/', homeRouter);
 app.use('/admin', adminRouter);
 
