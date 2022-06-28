@@ -55,11 +55,20 @@
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="/" class="active">Home</a></li> 
-                    <li><a href="/about" class="">About</a></li>
-                    <li><a href="/services" class="">Services</a></li>
-                    <li><a href="/projects" class="">Projects</a></li>
-                    <li><a href="/blog" class="">Blog</a></li>
+                    <!-- <li <% if (page_name==='/' ) { %>class="current" <% } %> ><a href="/about">About</a></li> -->
+
+                    
+                    
+                    
+                    <li><a href="/" <% if (page_name==='/' ) { %>class="active" <% } %> >Home</a></li>
+                    <li><a href="/about" <% if (page_name==='/about' ) { %>class="active" <% } %> >About</a></li>
+                    <li><a href="/services" <% if (page_name==='/services' ) { %>class="active" <% } %> >Services</a></li>
+                    <li><a href="/projects" <% if (page_name==='/projects' ) { %>class="active" <% } %> >Projects</a></li>
+                    <li><a href="/blog" <% if (page_name==='/blog' ) { %>class="active" <% } %> >Blog</a></li>
+
+
+ 
+                   
                     <li class="dropdown"><a href="#"><span>Dropdown</span> <i
                                 class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
@@ -79,7 +88,7 @@
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
                     </li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/contact" <% if (page_name==='/contact' ) { %>class="active" <% } %> >Contact</a></li>
                 </ul>
             </nav><!-- .navbar -->
 

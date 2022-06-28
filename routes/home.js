@@ -26,18 +26,26 @@ let theServices = {
 
 
 router.get('/', (req, res) => {
+    if (req.session.view) {
+        req.session.view++;
+    }
+    else {
+        req.session.view = 1;
+    };
+    console.log(req.session.view);
+    res.cookie('name', title, {maxAge: 1000 * 60 * 60 * 24 * 7, httpOnly: true});
     res.status(200);
-    res.render('home/index', { title, usefulLink, theServices }, req.ejs);
+    res.render('home/index', { title, usefulLink, theServices, page_name : '/' }, );
 });
 
 router.get('/about', (req, res) => {
     res.status(200);
-    res.render('home/about', { title, usefulLink, theServices });
+    res.render('home/about', { title, usefulLink, theServices, page_name: '/about' });
 });
 
 router.get('/services', (req, res) => {
     res.status(200);
-    res.render('home/services', { title, usefulLink, theServices });
+    res.render('home/services', { title, usefulLink, theServices, page_name: '/services' });
 });
 
 router.get('/service/:id', (req, res) => {
@@ -47,19 +55,20 @@ router.get('/service/:id', (req, res) => {
 
 router.get('/projects', (req, res) => {
     res.status(200);
-    res.render('home/projects', { title, usefulLink, theServices });
+    res.render('home/projects', { title, usefulLink, theServices, page_name: '/projects' });
 });
 
 router.get('/blog', (req, res) => {
+    console.log(req.cookies)
     res.status(200);
-    res.render('home/blog', { title, usefulLink, theServices });
+    res.render('home/blog', { title, usefulLink, theServices, page_name: '/blog' });
 });
 
 
 router.route('/contact')
     .get((req, res) => {
         res.status(200);
-        res.render('home/contact', { title, usefulLink, theServices  });
+        res.render('home/contact', { title, usefulLink, theServices, page_name: '/contact'  });
     })
     .post((req, res) => {
         res.status(201);
