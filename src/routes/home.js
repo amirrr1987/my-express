@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 
 
 let title = 'UpConstruction'
@@ -26,16 +25,19 @@ let theServices = {
 
 
 router.get('/', (req, res) => {
-    if (req.session.view) {
-        req.session.view++;
-    }
-    else {
-        req.session.view = 1;
-    };
-    console.log(req.session.view);
-    res.cookie('name', title, {maxAge: 1000 * 60 * 60 * 24 * 7, httpOnly: true});
+    // res.end({name: 'amir'});
+    // if (req.session.view) {
+    //     req.session.view++;
+    // }
+    // else {
+    //     req.session.view = 1;
+    // };
+    // console.log(req.session.view);
+    // res.cookie('name', title, {maxAge: 1000 * 60 * 60 * 24 * 7, httpOnly: true});
     res.status(200);
     res.render('home/index', { title, usefulLink, theServices, page_name : '/' }, );
+    // res.render('sdf')
+    // res.render('home/index', {title: 'd'})
 });
 
 router.get('/about', (req, res) => {
