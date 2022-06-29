@@ -5,6 +5,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 const path = require('path');
 // const qs = require('querystring');
+
+const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override');
@@ -89,5 +91,7 @@ app.use((req, res) => {
     res.status(404);
     res.sendFile(path.join(__dirname, './views/home/404.html'));
 });
+
+serverless(app);
 
 app.listen(port, () => { 'server running on port :' + port });
