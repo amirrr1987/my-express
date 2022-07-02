@@ -38,6 +38,7 @@ router.get('/', (req, res) => {
     res.render('home/index', { title, usefulLink, theServices, page_name : '/' }, );
     // res.render('sdf')
     // res.render('home/index', {title: 'd'})
+    // res.end('sdf')
 });
 
 router.get('/about', (req, res) => {
