@@ -1,6 +1,6 @@
 class Controller {
   getIndex(req, res) {
-    res.send({ page: "home" });
+    res.send({ page: "about" });
   }
 }
 module.exports = new Controller();

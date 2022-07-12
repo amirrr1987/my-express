@@ -1,9 +1,10 @@
 
 const HomeController = require("./home");
+const AboutController = require("./about");
 
 const controllers = {
-    HomeController
-}
-
+  HomeController,
+  AboutController,
+};
 
 module.exports = controllers;
