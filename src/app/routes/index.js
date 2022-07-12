@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
 
@@ -10,4 +10,9 @@ router.use("/api/auth", AuthRoutes);
 router.use("/api/", HomeRoutes);
 router.use("/api/about", AboutRoutes);
 
-module.exports = router
+router.use((req, res) => {
+  res.status(404);
+  res.send({ success: false, message: "route Not found" });
+});
+
+module.exports = router;
