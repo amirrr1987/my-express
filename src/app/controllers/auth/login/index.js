@@ -1,7 +1,6 @@
 class Controller {
   getIndex(req, res) {
-    res.statusCode = 200;
-    res.send({ page: "about" });
+    res.send({ page: "login" });
   }
 }
 module.exports = new Controller();
