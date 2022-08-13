@@ -1,32 +1,50 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const app = express();
-const port = process.env.PORT || 5000;
-module.exports = class Application {
-  constructor() {
-    this.serverConfig();
-    this.databaseConfig();
-    this.setConfig();
-    this.setRoutes();
-  }
-  serverConfig() {
-    app.listen(port, () => {
-      console.log("Server is running on port: " + port);
-    });
-  }
-  async databaseConfig() {
-    await mongoose.connect("mongodb://localhost/my-app", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  }
-  setConfig() {
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: false }));
-  }
-  setRoutes() {
-    app.use(require("./routes"));
-  }
-};
+const port = 5000;
+// const cors = require("cors");
+const bodyParser = require('body-parser')
+const models = require("./models");
+
+
+class Application {
+    constructor() {
+        this.setDataBase();
+        this.setMiddlewares();
+        this.setRoutes();
+        this.runServer();
+    }
+    runServer() {
+        app.listen(port, () => {
+            console.log("Server is running on port: " + port);
+        });
+    }
+    setMiddlewares() {
+        app.use(bodyParser.urlencoded({ extended: false }));
+        app.use(express.json())
+
+    }
+    async setDataBase() {
+        try {
+            await mongoose.connect("mongodb://localhost:27017/my-server", {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            })
+            console.log("Connected to mongoDB");
+        } catch (error) {
+            console.log("Error connecting to mongoDB");
+        }
+
+    }
+    setRoutes() {
+        app.use(require("./routes"));
+    }
+}
+
+const App = new Application()
+module.exports = function useApp() {
+    return App
+}
+
+

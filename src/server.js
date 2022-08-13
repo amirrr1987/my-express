@@ -1,3 +1,3 @@
-const App = require("./app");
+const useApp = require("./app");
+useApp()
 
-new App();
