@@ -1,5 +1,5 @@
 class Controller {
-    getIndex(req, res) {
+    getAllIndex(req, res) {
         res.statusCode = 200;
         res.send({ page: "about" });
     }
