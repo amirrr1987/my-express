@@ -4,7 +4,7 @@ const schemaHome = new mongoose.Schema({
     title: { type: String, required: true, default: "title" },
     description: { type: String, required: true, default: "description" },
     link: { type: String, required: true, default: "https://www.zoomit.ir/" },
-    tags: { type: [String], required: false, default: ["html"],  },
+    tags: { type: [String], required: true, default: ["html"],  },
     name: { type: String, required: true, default: "name" },
     // publish: {type: Date , required: true, default: Date.now},
     price: {
@@ -18,3 +18,5 @@ const schemaHome = new mongoose.Schema({
 const HomeModel = mongoose.model("home", schemaHome)
 
 module.exports = HomeModel;
+
+
